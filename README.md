@@ -28,7 +28,6 @@ Welcome to **Mixture of Idiots Experts (MoIE)**! This project provides a PyTorch
     *   [🧩 Using `idiot_expert.py` in Your Own Models](#using-expert-module)
 7.  [✨ Example Output](#example-output)
 8.  [📜 Acknowledgements & Citation](#acknowledgements)
-9.  [🤝 Contributing](#contributing)
 
 ---
 
@@ -295,11 +294,6 @@ And this PyTorch implementation can be informally credited if desired:
     year={2019-Present}
 }
 ```
-
-<h2 id="contributing">�� Contributing</h2>
-
-Contributions, issues, and feature requests are welcome! While this started as a fun take on a serious concept, improvements are always appreciated. Feel free to fork the repo, make your changes, and submit a pull request.
-
 ---
 
 Let the most efficient (and well-gated) "idiot" experts win! 🎉
