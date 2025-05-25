@@ -108,40 +108,40 @@ The following diagram illustrates the flow of data through the MoE layer:
   +---------+---------+
   |                   |
   v                   v
-+---------------------+    +------------------------------------------+
-|  Gating Mechanism   |    |                                          |
-| - Input: X          |    |                                          |
-| - Output:           |    |                                          |
-|   - gate_scores (g) |----+--> SparseDispatcher                      |
-|   - top_k_indices   |--+ |   - Input: X, gate_scores, top_k_indices |
-+---------------------+  | |                                          |
-                         | |   1. DISPATCH:                           |
-                         | |      For each item in X, route it to     |
-                         | |      the 'top_k_indices' experts:        |
-                         | |                                          |
-                         | |      X_item --> Expert_k1, Expert_k2 ... |
-                         | |                    |        |            |
-                         | |                    v        v            |
-                         | |             +----------+ +----------+    |
-                         | |             | Expert_k1| | Expert_k2|... |
-                         | |             |  (MLP)   | |  (MLP)   |    |
-                         | |             +----------+ +----------+    |
-                         | |                    |        |            |
-                         | |                    v        v            |
-                         | |              (output_k1)(output_k2)     |
-                         | |                                          |
-                         | |   2. COMBINE:                            |
-                         +-|--> Collects expert outputs & combines    |
-                           |   them weighted by 'gate_scores' (g):  |
-                           |   Final_Y_item = sum(g_i * output_ki)  |
-                           |                                          |
-                           +------------------------------------------+
-                                                 |
-                                                 v
-                                     +---------------------------+
-                                     | Final Output of MoE Layer |
-                                     +---------------------------+
-```
++-----------------------+         +------------------------------------------+
+|  Gating Mechanism     |         |                                          |
+| - Input: X            |         |                                          |
+| - Output:             |         |                                          |
+|   - gate_scores (g)   |---------+--> SparseDispatcher                      |
+|   - top_k_indices     |--+      |   - Input: X, gate_scores, top_k_indices |
++-----------------------+  |      |                                          |
+                           |      |   1. DISPATCH:                           |
+                           |      |      For each item in X, route it to     |
+                           |      |      the 'top_k_indices' experts:        |
+                           |      |                                          |
+                           |      |      X_item --> Expert_k1, Expert_k2 ... |
+                           |      |                    |        |            |
+                           |      |                    v        v            |
+                           |      |             +----------+ +----------+    |
+                           |      |             | Expert_k1| | Expert_k2|... |
+                           |      |             |  (MLP)   | |  (MLP)   |    |
+                           |      |             +----------+ +----------+    |
+                           |      |                    |        |            |
+                           |      |                    v        v            |
+                           |      |              (output_k1)(output_k2)      |
+                           |      |                                          |
+                           |      |   2. COMBINE:                            |
+                           +------|--> Collects expert outputs & combines    |
+                                  |   them weighted by 'gate_scores' (g):    |
+                                  |   Final_Y_item = sum(g_i * output_ki)    |
+                                  |                                          |
+                                  +------------------------------------------+
+                                                        |
+                                                        v
+                                          +---------------------------+
+                                          | Final Output of MoE Layer |
+                                          +---------------------------+
+``` 
 
 ---
 
