@@ -1,3 +1,9 @@
+<div align="center">
+  🚩🧡🕉️ || जय श्री राम || 🕉️🧡🚩
+</div>
+
+---
+
 <h1 align="center" id="top">Mixture of Idiots Experts 🤪🧠💥</h1>
 
 <p align="center">
